@@ -1,4 +1,8 @@
-<!-- parent to child  -->
-<app-posts-list [PTC]="parenTtoChild"></app-posts-list>
-<!-- child to parent -->
-<h1>{{message}}</h1>
+<app-posts-list [parentdata]="parentTochild"></app-posts-list>
+
+<h1>{{child}}</h1>
+
+
+
+<app-output-eventemitter (messageEvent)="recivemessagefromchild($event)"></app-output-eventemitter>
+<h2>{{displayonui}}</h2>

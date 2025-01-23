@@ -8,8 +8,7 @@ import { Component, input, Input } from '@angular/core';
   styleUrl: './posts-list.component.css'
 })
 export class PostsListComponent {
-@Input() PTC:string = '';
+@Input() parentdata:string = '';
 
-ChildToParent:string = 'childData';
-
+childToParent: string = 'child Data'
 }

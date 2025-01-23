@@ -1,30 +1,34 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, viewChild, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {HeaderComponent} from '../app/header/header.component'
-import { NavbarComponent } from './navbar/navbar.component';
 import { PostsListComponent } from './posts-list/posts-list.component';
+import { OutputEventemitterComponent } from './output-eventemitter/output-eventemitter.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HeaderComponent,NavbarComponent,PostsListComponent],
+  imports: [RouterOutlet,PostsListComponent,OutputEventemitterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent implements AfterViewInit{
-  parenTtoChild : string='parent data'
-  //declare var for initgrate data in ui 
-  message:string = '';
+ parentTochild: string = 'parent data'
 
+ @ViewChild(PostsListComponent) fromchild:any;
+ //to render child data on ui access fromchildObj
+ child:string = '';
 
-  @ViewChild(PostsListComponent) childmsg:any;
+ constructor(){
+  console.log(this.fromchild)
+ }
+ ngAfterViewInit(): void {
+   console.log(this.fromchild)
+   this.child = this.fromchild.childToParent;
+ }
+ //output_eventemitter -- fromchild
+ displayonui: string = '';
+ recivemessagefromchild(message:string){
+  console.log(message)
+  this.displayonui = message;
+ }
 
-  constructor(){
-    console.log(this.childmsg);
-  }
-
-  ngAfterViewInit(): void {
-    console.log(this.childmsg);
-    this.message = this.childmsg.ChildToParent;
-  }
 }
